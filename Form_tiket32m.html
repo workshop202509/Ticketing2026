@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Formulir Pemesanan Tiket</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 650px;
+      margin: auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h2, h3, h4 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    h4 {
+     font-size: 1em;   /* lebih kecil dari h3 */
+     font-weight: bold; /* tetap tegas */
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    input[type="text"], input[type="number"], input[type="date"], input[type="time"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+
+    .row {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 15px;
+    }
+    .row > div {
+      flex: 1;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #f0f0f0;
+    }
+    .total-price {
+      margin-top: 15px;
+      font-size: 1.2em;
+      font-weight: bold;
+      text-align: right;
+      color: #007bff;
+    }
+    .payment-options {
+      display: flex;
+      gap: 15px;
+      margin-top: 10px;
+    }
+    .payment-option {
+      flex: 1;
+      padding: 12px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: 600;
+      user-select: none;
+    }
+    .payment-option.selected {
+      background-color: #007bff;
+      color: white;
+      border-color: #007bff;
+    }
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1.1em;
+      cursor: pointer;
+      margin-top: 25px;
+    }
+    .submit-btn:hover {
+      background-color: #0056b3;
+    }
+    .note {
+      font-style: italic;
+      font-size: 0.9em;
+      color: #666;
+      margin-top: 5px;
+    }
+    .antrian-container {
+      text-align: center;
+      padding: 30px;
+      border: 2px solid #28a745;
+      background-color: #e2f9e9;
+      border-radius: 10px;
+      display: none;
+      margin-top: 20px;
+    }
+    .nomor-antrian {
+      font-size: 2em;
+      font-weight: bold;
+      color: #007bff;
+      margin-top: 10px;
+    }
+
+    /* Tambahan khusus untuk kotak tanggal & waktu */
+    input[type="date"], input[type="time"] {
+      max-width: 180px;   /* kotak lebih kecil */
+      font-size: 0.95em;  /* sedikit lebih kecil */
+      padding: 8px;       /* lebih ringkas */
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="container" id="form-container">
+  <h2>Formulir Pemesanan Tiket/Ticket Order</h2>
+
+  <div class="row">
+    <div>
+      <label for="tanggal">Tanggal/Date</label>
+      <input type="date" id="tanggal" readonly>
+    </div>
+    <div>
+      <label for="waktu">Waktu/Time</label>
+      <input type="time" id="waktu" readonly>
+    </div>
+  </div>
+
+  <label for="nama">Nama/Name</label>
+  <input type="text" id="nama" required>
+
+  <h3>Tiket/Ticket</h3>
+  <table>
+    <tr><th>Tiket/ Tickets</th><th>Harga/ Price</th><th>Jumlah/ Amount</th></tr>
+    <tr>
+      <td>Dewasa/ Adult (>= 22)</td><td>Rp 100.000</td>
+      <td><input type="number" id="dewasa" min="0" value="0" oninput="calculateTotal()"></td>
+    </tr>
+    <tr>
+      <td>Pelajar/ Student (13-21)</td><td>Rp 50.000</td>
+      <td><input type="number" id="pelajar" min="0" value="0" oninput="calculateTotal()"></td>
+    </tr>
+    <tr>
+      <td>Anak/ Children (7-12)</td><td>Rp 25.000</td>
+      <td><input type="number" id="anak" min="0" value="0" oninput="calculateTotal()"></td>
+    </tr>
+  </table>
+  <div class="total-price">Jumlah Pembayaran/Total Payment: <span id="total-price">Rp0</span></div>
+
+  <h4>Metode Pembayaran/Payment Option</h4>
+  <div class="payment-options">
+    <div class="payment-option" onclick="selectMetode('QRIS')">QRIS</div>
+    <div class="payment-option" onclick="selectMetode('Card')">Card</div>
+  </div>
+ 
+
+  <h3>Asal Negara/Domicile Country</h3>
+  <div class="note">* untuk luar Indonesia/Only for the foreigners</div>
+  <table>
+    <tr><th>Asal Negara/ Country</th><th>Jumlah Orang/ Total People</th></tr>
+    <tr>
+      <td><input type="text" name="negara1" placeholder="Contoh/Example: Malaysia"></td>
+      <td><input type="number" name="jumlah1" min="0" value="0"></td>
+    </tr>
+    <tr>
+      <td><input type="text" name="negara2" placeholder="Contoh/Example: India"></td>
+      <td><input type="number" name="jumlah2" min="0" value="0"></td>
+    </tr>
+    <tr>
+ </table>
+
+  <button class="submit-btn" onclick="submitForm()">Pesan Sekarang/Order Now</button>
+</div>
+
+<div class="antrian-container" id="antrian-container">
+  <h3>Terima kasih atas pemesanan Anda!/Thanks for your order!</h3>
+  <p>Nomor antrian Anda adalah/Your queue number:</p>
+  <div class="nomor-antrian" id="nomor-antrian"></div>
+</div>
+
+<script>
+  let queueNumber = 0;
+  let selectedMetode = "";
+
+  window.onload = function() {
+    const now = new Date();
+    const day = now.getDay(); // 0 = Mimggu, 1 = Senin, 2 = Selasa, 6 = Sabtu
+    const jam = now.getHours();
+    const menit = now.getMinutes();
+
+   let isWaktuValid = false;
+
+   if (day === 0) {
+    // Minggu: 11.00 – 14.35
+     isWaktuValid = (jam > 11 || (jam === 11 && menit >= 0)) &&
+                    (jam < 14 || (jam === 14 && menit <= 35));
+   } else if (day === 6) {
+    // Sabtu: 09.30 – 23.00
+     isWaktuValid = (jam > 12 || (jam === 09 && menit >= 30)) &&
+                    (jam < 16 || (jam === 23 && menit === 0));
+
+   } else if (day === 3) {
+    // Rabu: 07.00 – 23.00
+    isWaktuValid = (jam > 7 || (jam === 7 && menit >= 0)) &&
+                   (jam < 23 || (jam === 23 && menit === 0));
+   }
+
+  if (!isWaktuValid) {
+    document.body.innerHTML = `
+      <div style="max-width:600px;margin:100px auto;text-align:center;font-family:'Segoe UI',sans-serif;">
+        <h2>Formulir belum tersedia</h2>
+        <p>Formulir ini hanya dapat diakses pada waktu berikut:</p>
+        <ul style="text-align:left; display:inline-block;">
+          <li><strong>Sabtu tertentu</strong> pukul <strong>12.30–16.00</strong></li>
+          <li><strong>Minggu</strong> pukul <strong>11.00–14.35</strong></li>
+        </ul>
+        <p>This form is only available at:</p>
+        <ul style="text-align:left; display:inline-block;">
+          <li><strong>Selected Saturdays</strong> from <strong>12:30 to 16:00</strong></li>
+          <li><strong>Sundays</strong> from <strong>11:00 to 14:35</strong></li>
+        </ul>
+      </div>
+    `;
+    return;
+  }
+
+    // Jika waktu valid, isi tanggal dan waktu seperti biasa
+
+    document.getElementById('tanggal').value = now.toISOString().split('T')[0];
+    document.getElementById('waktu').value = now.toTimeString().slice(0,5);
+    calculateTotal();
+  };
+
+  function calculateTotal() {
+    const dewasa = parseInt(document.getElementById('dewasa').value) || 0;
+    const pelajar = parseInt(document.getElementById('pelajar').value) || 0;
+    const anak = parseInt(document.getElementById('anak').value) || 0;
+    const total = dewasa * 100000 + pelajar * 50000 + anak * 25000;
+    document.getElementById('total-price').innerText = new Intl.NumberFormat('id-ID', {
+      style: 'currency', currency: 'IDR'
+    }).format(total);
+  }
+
+  function selectMetode(metode) {
+    selectedMetode = metode;
+    document.querySelectorAll('.payment-option').forEach(el => {
+      el.classList.remove('selected');
+      if (el.textContent === metode) el.classList.add('selected');
+    });
+  }
+
+  
+function submitForm() {
+  const now = new Date();
+  const lastSubmit = localStorage.getItem("lastSubmitTime");
+
+  // Cek apakah sudah pernah submit dalam 3 menit terakhir
+  if (lastSubmit) {
+    const lastTime = new Date(parseInt(lastSubmit));
+    const diffMs = now - lastTime;
+    const diffMinutes = diffMs / 1000 / 60;
+
+    if (diffMinutes < 1) {
+      return alert("Anda sudah mengirim data. Silakan tunggu 3 menit sebelum mengirim lagi.\nYou have already submitted. Please wait 3 minutes before submitting again.");
+    }
+  }
+
+  const nama = document.getElementById('nama').value;
+  if (!nama) return alert("Nama harus diisi/Name is required.");
+  if (!selectedMetode) return alert("Pilih metode pembayaran/Please choose payment option.");
+
+  const dewasa = parseInt(document.getElementById('dewasa').value) || 0;
+  const pelajar = parseInt(document.getElementById('pelajar').value) || 0;
+  const anak = parseInt(document.getElementById('anak').value) || 0;
+  const total = dewasa * 100000 + pelajar * 50000 + anak * 25000;
+
+  if (total <= 0) return alert("Pilih tiketnya/Please select your ticket(s).");
+
+  const tanggal = now.toISOString().split('T')[0];
+  const waktu = now.toTimeString().slice(0, 5);
+
+  const negara1 = document.querySelector('[name="negara1"]').value;
+  const jumlah1 = document.querySelector('[name="jumlah1"]').value;
+  const negara2 = document.querySelector('[name="negara2"]').value;
+  const jumlah2 = document.querySelector('[name="jumlah2"]').value;
+  
+  const formData = new URLSearchParams();
+ 
+  formData.append("tanggalDanJam", `${tanggal} ${waktu}`);
+  formData.append("nama", nama);
+  formData.append("dewasa", dewasa);
+  formData.append("pelajar", pelajar);
+  formData.append("anak", anak);
+  // hapus data total: formData.append("total", total)
+  formData.append("metode", selectedMetode);
+  formData.append("negara1", negara1);
+  formData.append("jumlah1", jumlah1);
+  formData.append("negara2", negara2);
+  formData.append("jumlah2", jumlah2);
+ 
+  // Disable tombol agar tidak bisa diklik lagi
+  const button = document.querySelector('.submit-btn');
+  button.disabled = true;
+  button.innerText = "Mengirim... / Submitting...";
+
+  fetch("https://script.google.com/macros/s/AKfycbxPKspe-kITvtfMr6HsNMsuWCVIqtCNVYZ2B1VBVDqMTnhBcFMm-tdEM3oQwK1ZyQ34LA/exec", {
+    method: "POST",
+    body: formData
+})
+  .then(response => response.text())
+  .then(result => {
+    console.log("Nomor antrian dari backend:", result); // ← Tambahan log
+    localStorage.setItem("lastSubmitTime", now.getTime()); // ← Tambahan penting
+    document.getElementById('form-container').style.display = 'none';
+    document.getElementById('antrian-container').style.display = 'block';
+    document.getElementById('nomor-antrian').innerText = result;
+  })
+  .catch(error => {
+    alert("Gagal kirim data ke Google Sheets: " + error);
+   button.disabled = false;
+    button.innerText = "Pesan Sekarang/Order Now";
+  });
+}
+</script>
+
+</body>
+</html>
+
