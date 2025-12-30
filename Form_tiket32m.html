@@ -226,12 +226,12 @@
      isWaktuValid = (jam > 11 || (jam === 11 && menit >= 0)) &&
                     (jam < 14 || (jam === 14 && menit <= 35));
    } else if (day === 6) {
-    // Sabtu: 09.30 – 23.00
+    // Sabtu: 09.30 – 16.00
      isWaktuValid = (jam > 12 || (jam === 09 && menit >= 30)) &&
-                    (jam < 16 || (jam === 23 && menit === 0));
+                    (jam < 16 || (jam === 16 && menit === 0));
 
-   } else if (day === 3) {
-    // Rabu: 07.00 – 23.00
+   } else if (day === 2) {
+    // Selasa: 07.00 – 23.00
     isWaktuValid = (jam > 7 || (jam === 7 && menit >= 0)) &&
                    (jam < 23 || (jam === 23 && menit === 0));
    }
@@ -356,4 +356,5 @@ function submitForm() {
 
 </body>
 </html>
+
 
