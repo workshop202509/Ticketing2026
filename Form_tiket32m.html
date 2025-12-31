@@ -145,68 +145,67 @@
 
 <div class="container" id="form-container">
   <h2  style="text-align:center; border-bottom:1px solid #000; display:inline-block; padding-bottom:5px;">
-    Pemesanan Tiket<br>
-    Ticket Order
+    Pemesanan Tiket/ Ticket Order
   </h2>
 
   <div class="row">
     <div>
-      <label for="tanggal">Tanggal|Date</label>
+      <label for="tanggal">Tanggal/Date</label>
       <input type="date" id="tanggal" readonly>
     </div>
     <div>
-      <label for="waktu">Waktu|Time</label>
+      <label for="waktu">Waktu/Time</label>
       <input type="time" id="waktu" readonly>
     </div>
   </div>
 
-  <label for="nama">Nama|Name</label>
+  <label for="nama">Nama/Name</label>
   <input type="text" id="nama" required>
 
-  <h3>Tiket|Ticket</h3>
+  <h3>Tiket/Ticket</h3>
   <table>
-    <tr><th>Tiket| Tickets</th><th>Harga| Price</th><th>Jumlah| Amount</th></tr>
+    <tr><th>Tiket/ Tickets</th><th>Harga/ Price</th><th>Jumlah/ Amount</th></tr>
     <tr>
-      <td>Dewasa| Adult (>= 22)</td><td>Rp 100.000</td>
+      <td>Dewasa/ Adult (>= 22)</td><td>Rp 100.000</td>
       <td><input type="number" id="dewasa" min="0" value="0" oninput="calculateTotal()"></td>
     </tr>
     <tr>
-      <td>Pelajar| Student (13-21)</td><td>Rp 50.000</td>
+      <td>Pelajar/ Student (13-21)</td><td>Rp 50.000</td>
       <td><input type="number" id="pelajar" min="0" value="0" oninput="calculateTotal()"></td>
     </tr>
     <tr>
-      <td>Anak| Children (7-12)</td><td>Rp 25.000</td>
+      <td>Anak/ Children (7-12)</td><td>Rp 25.000</td>
       <td><input type="number" id="anak" min="0" value="0" oninput="calculateTotal()"></td>
     </tr>
   </table>
-  <div class="total-price">Jumlah Pembayaran|Total Payment: <span id="total-price">Rp0</span></div>
+  <div class="total-price">Jumlah Pembayaran/Total Payment: <span id="total-price">Rp0</span></div>
 
-  <h4>Metode Pembayaran|Payment Option</h4>
+  <h4>Metode Pembayaran/Payment Option</h4>
   <div class="payment-options">
     <div class="payment-option" onclick="selectMetode('QRIS')">QRIS</div>
     <div class="payment-option" onclick="selectMetode('Card')">Card</div>
   </div>
  
 
-  <h3>Asal Negara|Domicile Country</h3>
+  <h3>Asal Negara/Domicile Country</h3>
   <div class="note">
     * untuk luar Indonesia<br>
     Only for the foreigners
   </div>
   <table>
-    <tr><th>Asal Negara| Country</th><th>Jumlah Orang| Total People</th></tr>
+    <tr><th>Asal Negara/ Country</th><th>Jumlah Orang/ Total People</th></tr>
     <tr>
-      <td><input type="text" name="negara1" placeholder="Contoh|Example: Malaysia"></td>
+      <td><input type="text" name="negara1" placeholder="e.g.: Malaysia"></td>
       <td><input type="number" name="jumlah1" min="0" value="0"></td>
     </tr>
     <tr>
-      <td><input type="text" name="negara2" placeholder="Contoh|Example: India"></td>
+      <td><input type="text" name="negara2" placeholder="e.g.: India"></td>
       <td><input type="number" name="jumlah2" min="0" value="0"></td>
     </tr>
     <tr>
  </table>
 
-  <button class="submit-btn" onclick="submitForm()">Pesan Sekarang|Order Now</button>
+  <button class="submit-btn" onclick="submitForm()">Pesan Sekarang/Order Now</button>
 </div>
 
 <div class="antrian-container" id="antrian-container">
@@ -368,6 +367,7 @@ function submitForm() {
 
 </body>
 </html>
+
 
 
 
