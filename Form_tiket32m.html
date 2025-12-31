@@ -241,7 +241,7 @@
      isWaktuValid = (jam > 12 || (jam === 09 && menit >= 30)) &&
                     (jam < 16 || (jam === 16 && menit === 0));
 
-   } else if (day === 2) {
+   } else if (day === 3) {
     // Selasa: 07.00 – 23.00
     isWaktuValid = (jam > 7 || (jam === 7 && menit >= 0)) &&
                    (jam < 23 || (jam === 23 && menit === 0));
@@ -257,7 +257,7 @@
           <li><strong>Minggu</strong> pukul <strong>11.00–14.35</strong></li>
         </ul>
         <p>This form is only available at:</p>
-        <ul  tyle="list-style-position:inside; text-align:center; font-size:0.9em; white-space:nowrap;">
+        <ul style="text-align:left; display:inline-block;">
           <li><strong>Selected Saturdays</strong> from <strong>12:30 to 16:00</strong></li>
           <li><strong>Sundays</strong> from <strong>11:00 to 14:35</strong></li>
         </ul>
@@ -367,6 +367,7 @@ function submitForm() {
 
 </body>
 </html>
+
 
 
 
