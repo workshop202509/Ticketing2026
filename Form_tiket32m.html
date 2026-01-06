@@ -305,13 +305,13 @@ function submitForm() {
     const diffMinutes = diffMs / 1000 / 60;
 
     if (diffMinutes < 1) {
-      return alert("Anda sudah mengirim data. Silakan tunggu 3 menit sebelum mengirim lagi.\n<em>You have already submitted. Please wait 3 minutes before submitting again.</em>");
+      return alert("Anda sudah mengirim data. Silakan tunggu 3 menit sebelum mengirim lagi.\nYou have already submitted. Please wait 3 minutes before submitting again.");
     }
   }
 
   const nama = document.getElementById('nama').value;
-  if (!nama) return alert("Nama harus diisi/ Name is required.");
-  if (!selectedMetode) return alert("Pilih metode pembayaran<br><em> Please choose payment option.</em>");
+  if (!nama) return alert("Nama harus diisi/Name is required.");
+  if (!selectedMetode) return alert("Pilih metode pembayaran\nPlease choose payment option.");
 
   const dewasa = parseInt(document.getElementById('dewasa').value) || 0;
   const pelajar = parseInt(document.getElementById('pelajar').value) || 0;
@@ -369,6 +369,7 @@ function submitForm() {
 
 </body>
 </html>
+
 
 
 
