@@ -305,20 +305,20 @@ function submitForm() {
     const diffMinutes = diffMs / 1000 / 60;
 
     if (diffMinutes < 1) {
-      return alert("Anda sudah mengirim data. Silakan tunggu 3 menit sebelum mengirim lagi.\nYou have already submitted. Please wait 3 minutes before submitting again.");
+      return alert("Anda sudah mengirim data. Silakan tunggu 3 menit sebelum mengirim lagi.\n<em>You have already submitted. Please wait 3 minutes before submitting again.</em>");
     }
   }
 
   const nama = document.getElementById('nama').value;
   if (!nama) return alert("Nama harus diisi/ Name is required.");
-  if (!selectedMetode) return alert("Pilih metode pembayaran/ Please choose payment option.");
+  if (!selectedMetode) return alert("Pilih metode pembayaran<br><em> Please choose payment option.</em>");
 
   const dewasa = parseInt(document.getElementById('dewasa').value) || 0;
   const pelajar = parseInt(document.getElementById('pelajar').value) || 0;
   const anak = parseInt(document.getElementById('anak').value) || 0;
   const total = dewasa * 100000 + pelajar * 50000 + anak * 25000;
 
-  if (total <= 0) return alert("Pilih tiketnya/ Please select your ticket(s).");
+  if (total <= 0) return alert("Pilih tiketnya/Please select your ticket(s).");
 
   const tanggal = now.toISOString().split('T')[0];
   const waktu = now.toTimeString().slice(0, 5);
@@ -369,6 +369,7 @@ function submitForm() {
 
 </body>
 </html>
+
 
 
 
