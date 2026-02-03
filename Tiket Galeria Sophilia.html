@@ -11,13 +11,10 @@
     /* Bingkai ornamen tipis */ 
     border: 6px ridge #8b5e3c; /* garis ganda warna coklat antik */ position: relative;}
 
-    .logo { display: block; margin: 0 auto 20px; max-width: 200px;}
-
-    .leaf {position: absolute;font-size: 22px;color: #2e8b57 }
-    .top-left {top: -12px;left: -12px;transform: rotate(45deg);}
-    .top-right {top: -12px;right: -12px;transform: rotate(135deg);}
-    .bottom-left {bottom: -12px;left: -12px;transform: rotate(-45deg);}
-    .bottom-right {bottom: -12px;right: -12px;transform: rotate(-135deg);}
+    .logo { text-align:center; margin-bottom:20px;}
+    .logo .galeria {font-family: Arial; font-size: 14px;color: #000;letter-spacing: 2px;font-weight: normal;}
+    .logo .sophilia {font-family: arial; font-size: 30px;color: orange;letter-spacing: 0px;font-weight: normal;margin-top: -5px;
+		text-transform: uppercase;}
 
     h2,h3,h4 {text-align:center;color:#333; margin-bottom:20px;}
     h4 {font-size: 1em; font-weight: bold;   /*lebih kecil dari h3, tetap tegas */}
@@ -86,12 +83,14 @@ function selectTicket(option) {
 <body>
 
 <div class="container">
-  <span class="leaf top-left">🍃</span> <span class="leaf top-right">🍃</span> <span class="leaf bottom-left">🍃</span> 
-  <span class="leaf bottom-right">🍃</span>
 
   <!-- Step 1: Pilihan tiket -->
-  <div id="step1" style="text-align:center;">
-  <img src="GaleriaSophilia.png" alt="Logo Galeria Sophilia" class="logo">
+  <div id="step1" style="text-align:center;">   
+	<div class="logo"> 
+      <div class="galeria">GALERIA</div> 
+      <div class="sophilia">SOPHILIA</div> 
+    </div>
+
     <p style="text-align:center;">
   	  <strong>Pameran Keramik Tiga Warna Dinasti Tang</strong> <br> Peninggalan Budaya Jalur Sutra <br> 12 Oktober 2025 - Maret 2026 <br> 
 		di lantai 5 <br> Silakan pilih salah satu dari tiga jenis tiket yang tersedia.
@@ -211,10 +210,7 @@ window.onload = function() {
 
  if (!isWaktuValid) {
    document.body.innerHTML = `
-     <div class="container"; style="text-align:center;">
-  <span class="leaf top-left">🍃</span> <span class="leaf top-right">🍃</span> <span class="leaf bottom-left">🍃</span> 
-  <span class="leaf bottom-right">🍃</span>
-
+     <div class="container"; style="text-align:center;"
        <h3 style="margin:0 0 5px 0;">Formulir belum tersedia <br><em>The form is not available</em></h3> 
 
        <p style="font-size:0.9em;">Formulir ini hanya dapat diakses pada waktu berikut:</p>
@@ -397,6 +393,7 @@ function submitForm() {
 </script>
 </body>
 </html>
+
 
 
 
