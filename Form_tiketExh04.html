@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Formulir Pemesanan Tiket</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {font-family:'Segoe UI',sans-serif; background:#f9f9f9; margin:0;padding:20px;}
+    .container {max-width:700px;margin:auto; background:#fff;padding:10px; border-radius:10px; 
+	box-shadow:0 4px 12px rgba(0,0,0,0.1);
+
+    /* Bingkai ornamen tipis */ 
+    border: 6px ridge #8b5e3c; /* garis ganda warna coklat antik */ position: relative;}
+
+    .logo { display: block; margin: 0 auto 20px; max-width: 200px;}
+
+    .leaf {position: absolute;font-size: 22px;color: #2e8b57 }
+    .top-left {top: -12px;left: -12px;transform: rotate(45deg);}
+    .top-right {top: -12px;right: -12px;transform: rotate(135deg);}
+    .bottom-left {bottom: -12px;left: -12px;transform: rotate(-45deg);}
+    .bottom-right {bottom: -12px;right: -12px;transform: rotate(-135deg);}
+
+    h2,h3,h4 {text-align:center;color:#333; margin-bottom:20px;}
+    h4 {font-size: 1em; font-weight: bold;   /*lebih kecil dari h3, tetap tegas */}
+
+    label {font-weight: 600; margin-bottom: 5px; display: block;}
+
+    .ticket-options {display:flex;flex-direction:column;gap:15px;align-items:center;}
+    .ticket-option {padding:15px;border:2px solid #ccc;border-radius:8px;cursor:pointer;transition:0.3s;font-weight:600;text-align:center;width:80%;}
+    .ticket-option:hover {background:#f0f8ff;}
+    .ticket-option.selected {background:#007bff;color:#fff;border-color:#007bff;}
+
+    table {width:100%;border-collapse: collapse; margin-top:10px;border: 2px solid #8b5e3c;}
+
+    th,td {border:1px solid #8b5e3c;padding:10px;text-align:center;}
+    th {background:#f0f0f0;}
+
+    .total-price {margin-top:15px;font-size:1.2em;font-weight:bold;text-align:right;color:#007bff;}
+
+    .submit-btn,.back-btn {padding:12px;border:none;border-radius:6px;font-size:1.1em;cursor:pointer;
+	margin-top:15px;width:100%;}
+    .submit-btn {background:#007bff;color:#fff;}
+    .back-btn {background:#ccc;color:#000;}
+
+    .ticket-option.selected {background-color: #007bff;color: white;border-color: #007bff;}
+
+    .button-row {display: flex;gap: 15px;margin-top: 20px; /* jarak antar tombol */}
+    .button-row button {flex: 1; /* biar ukurannya sama besar */}
+
+    input[type="text"], input[type="number"], input[type="date"], input[type="time"] {
+      width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 6px;
+      box-sizing: border-box;}
+
+    .row {display: flex;gap: 20px;margin-bottom: 15px;}
+    .row > div {flex: 1;}
+
+    .payment-options {display: flex;gap: 15px;margin-top: 10px;}
+    .payment-option {flex: 1;padding: 12px;border: 2px solid #ccc;border-radius: 8px;text-align: center;
+      cursor: pointer;transition: 0.3s;font-weight: 600;user-select: none;}
+    .payment-option.selected {background-color: #007bff;color: white;border-color: #007bff;}
+
+    .note {font-style: italic;font-size: 0.9em;color: #666;margin-top: 5px;}
+
+    #nama {border: 2px solid #8b5e3c; padding: 10px; border-radius: 6px; font-size: 1em; }   
+
+    .antrian-container {text-align: center;padding: 30px;border: none;background-color: transparent;
+      display: none;margin-top: 5px;}
+
+    .nomor-antrian {font-size: 2em;font-weight: bold;color: #007bff;margin-top: 10px;}
+
+    /* Tambahan khusus untuk kotak tanggal & waktu */
+    input[type="date"], input[type="time"] {max-width: 180px;    /* kotak lebih kecil */
+      font-size: 0.95em;  /* sedikit lebih kecil */  padding: 8px;    /* lebih ringkas */}
+
+  </style>
+</head>
+
+<script>
+function selectTicket(option) {
+  // hapus highlight dari semua kotak
+  document.querySelectorAll('.ticket-option').forEach(el => el.classList.remove('selected'));
+  // tambahkan highlight ke kotak yang diklik
+  document.querySelectorAll('.ticket-option')[option-1].classList.add('selected');
+}
+</script>
+
+<body>
+
+<div class="container">
+  <span class="leaf top-left">🍃</span> <span class="leaf top-right">🍃</span> <span class="leaf bottom-left">🍃</span> 
+  <span class="leaf bottom-right">🍃</span>
+
+  <!-- Step 1: Pilihan tiket -->
+  <div id="step1" style="text-align:center;">
+  <img src="GaleriaSophilia.png" alt="Logo Galeria Sophilia" class="logo">
+    <p style="text-align:center;">
+  	  <strong>Pameran Keramik Tiga Warna Dinasti Tang</strong> <br> Peninggalan Budaya Jalur Sutra <br> 12 Oktober 2025 - Maret 2026 <br> 
+		di lantai 5 <br> Silakan pilih salah satu dari tiga jenis tiket yang tersedia.
+    </p>
+    <p>
+      ✨ <strong><em>Tang Tri-Color Grand Exhibition</strong></em> ✨<br><em> Exhibition of Silk Road Cultural Relics <br> 12 <sup>th</sup> October 2025 to March 2026<br>
+ 	 	in the 5<sup>th</sup> Floor <br> Please choose one of the three ticket types available.
+    </em></p>
+
+    <h3>Pilih Tiket/Choose Ticket</h3>
+    <div class="ticket-options">
+      <div class="ticket-option" onclick="goToForm(1)">
+        <strong>1. Pameran Lantai 5</strong><br>
+        <em>Exhibition on the 5<sup>th</sup> Floor</em><br>
+       </div>
+      <div class="ticket-option" onclick="goToForm(2)">
+        <strong>2. Tiket Masuk Umum</strong><br>
+        <em>General Admission Ticket</em><br>
+      </div>
+      <div class="ticket-option" onclick="goToForm(3)">
+        <strong>3. Tiket Terusan (Pameran + Umum)</strong><br>
+      <em>Bundled Ticket (Exhibition + General Admission)</em><br>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 2: Form Pemesanan -->
+  <div id="step2" style="text-align:center; display:none;">
+    <h2 style="margin-bottom:5px;">Pemesanan Tiket</h2> 
+    <hr style="width:60%; margin:auto; border:1px solid #000;"> 
+    <h2 style="margin-top:5px;">Ticket Order</h2> 
+
+  <div class="row">
+    <div>
+      <label for="tanggal">Tanggal/Date</label>
+      <input type="date" id="tanggal" readonly>
+    </div>
+    <div>
+      <label for="waktu">Waktu/Time</label>
+      <input type="time" id="waktu" readonly>
+    </div>
+  </div>
+
+    <label for="nama">Nama/Name</label>
+    <input type="text" id="nama" required>
+
+    <h3>Tiket/Ticket</h3>
+    <table id="ticketTable">
+      <tr><th>Tiket/ Tickets</th><th>Harga/ Price</th><th>Jumlah/ Amount</th></tr>
+    </table>
+    <div class="total-price">Jumlah Pembayaran/Total Payment: <span id="total-price">Rp0</span></div>
+ 
+  <h4>Metode Pembayaran/Payment Option</h4>
+  <div class="payment-options">
+    <div class="payment-option" onclick="selectMetode('QRIS')">QRIS</div>
+    <div class="payment-option" onclick="selectMetode('Card')">Card</div>
+  </div>
+ 
+
+  <h3>Asal Negara/Domicile Country</h3>
+  <div class="note">
+    * untuk luar Indonesia<br>
+    only for the foreigners
+  </div>
+  <table>
+    <tr><th>Asal Negara/ Country</th><th>Jumlah Orang/ Total People</th></tr>
+    <tr><td><input type="text" name="negara1" placeholder="e.g.: Malaysia"></td>
+      	  <td><input type="number" name="jumlah1" min="0" value="0"></td></tr>
+    <tr><td><input type="text" name="negara2" placeholder="e.g.: India"></td>
+      	  <td><input type="number" name="jumlah2" min="0" value="0"></td></tr>
+  </table>
+
+    <div class="button-row">
+      <button class="back-btn" onclick="goBack()">Kembali / Back</button>
+      <button class="submit-btn" onclick="submitForm()">Pesan Sekarang / Order Now</button>
+    </div>
+  </div>
+
+  <!-- Step 3: Antrian (setelah submit) -->
+  <div class="antrian-container" id="antrian-container" style="display:none;">
+    <h3 style="text-align:center;">Terima kasih atas pemesanan Anda!<br><em>Thanks for your order!</em></h3>
+    <p style="text-align:center;">Nomor antrian Anda adalah:<br><em>Your queue number:</em></p>
+    <div class="nomor-antrian" id="nomor-antrian"></div>
+  </div>
+</div>
+
+
+<script>
+let selectedTicket = 0;
+let queueNumber = 0;
+let selectedMetode = "";
+
+window.onload = function() {
+  const now = new Date();
+  const day = now.getDay(); // 0 = Mimggu, 1 = Senin, 2 = Selasa, 6 = Sabtu
+  const jam = now.getHours();
+  const menit = now.getMinutes();
+
+ let isWaktuValid = false;
+
+ if (day === 0) {
+  // Minggu: 11.00 – 14.35
+   isWaktuValid = (jam > 11 || (jam === 11 && menit >= 0)) && (jam < 14 || (jam === 14 && menit <= 35));
+                  
+ } else if (day === 6) {
+  // Sabtu: 12.30 – 16.00
+   isWaktuValid = (jam > 12 || (jam === 12 && menit >= 30)) && (jam < 16 || (jam === 16 && menit === 0));
+                  
+ } else if (day === 1) {
+  // Senin: 07.00 – 23.00
+  isWaktuValid = (jam > 7 || (jam === 7 && menit >= 0)) && (jam < 23 || (jam === 23 && menit === 0));
+ 
+ } else if (day === 2) {
+  // Selasa: 07.00 – 23.00
+  isWaktuValid = (jam > 7 || (jam === 7 && menit >= 0)) && (jam < 23 || (jam === 23 && menit === 0));
+ }
+
+ if (!isWaktuValid) {
+   document.body.innerHTML = `
+     <div class="container"; style="text-align:center;">
+  <span class="leaf top-left">🍃</span> <span class="leaf top-right">🍃</span> <span class="leaf bottom-left">🍃</span> 
+  <span class="leaf bottom-right">🍃</span>
+
+       <h3 style="margin:0 0 5px 0;">Formulir belum tersedia <br><em>The form is not available</em></h3> 
+
+       <p style="font-size:0.9em;">Formulir ini hanya dapat diakses pada waktu berikut:</p>
+       <ul style="text-align:left; display:inline-block;font-size:0.8em;">
+         <li><strong>Sabtu tertentu: 12.30 – 16.00</strong></li>
+         <li><strong>Minggu: 11.00 – 14.35</strong></li>
+       </ul>
+       <p style="font-size:0.9em;"><em>This form is only available at:</em></p>
+       <ul style="text-align:left; display:inline-block;font-size:0.8em;">
+         <li><strong><em>Selected Saturdays: 12:30 - 16:00</strong></li>
+         <li><strong>Sundays: 11:00 - 14:35</em></strong></li>
+       </ul>
+     </div>
+   `;
+   return;
+ }
+
+   // Jika waktu valid, isi tanggal dan waktu seperti biasa
+
+   document.getElementById('tanggal').value = now.toISOString().split('T')[0];
+   document.getElementById('waktu').value = now.toTimeString().slice(0,5);
+   calculateTotal();
+ };
+
+
+function goToForm(option){
+  selectedTicket = option;
+  // highlight kotak tiket
+  document.querySelectorAll('.ticket-option').forEach(el => el.classList.remove('selected'));
+  document.querySelectorAll('.ticket-option')[option-1].classList.add('selected');
+
+  // 2. tunggu sebentar (500ms), lalu pindah ke form 
+  setTimeout(() => {
+    document.getElementById("step1").style.display="none";
+    document.getElementById("step2").style.display="block";
+    renderTable();
+  }, 500);
+}
+
+function goBack(){
+  document.getElementById("step2").style.display="none";
+  document.getElementById("step1").style.display="block";
+}
+
+function renderTable(){
+  const table=document.getElementById("ticketTable");
+  let rows=`<tr><th>Tiket/ Tickets</th><th>Harga/ Price</th><th>Jumlah/ Amount</th></tr>`;
+  if(selectedTicket===1){
+    rows+=`<tr><td>Dewasa/ Adult (>=22)</td><td>Rp 40.000</td><td><input type="number" id="dewasa" min="0" value="0" oninput="calculateTotal()"></td></tr>
+           <tr><td>Pelajar/ Student (13-21)</td><td>Rp 20.000</td><td><input type="number" id="pelajar" min="0" value="0" oninput="calculateTotal()"></td></tr>`;
+  }else if(selectedTicket===2){
+    rows+=`<tr><td>Dewasa/ Adult (>=22)</td><td>Rp 100.000</td><td><input type="number" id="dewasa" min="0" value="0" oninput="calculateTotal()"></td></tr>
+           <tr><td>Pelajar/ Student (13-21)</td><td>Rp 50.000</td><td><input type="number" id="pelajar" min="0" value="0" oninput="calculateTotal()"></td></tr>
+           <tr><td>Anak/ Child (7-12)</td><td>Rp 25.000</td><td><input type="number" id="anak" min="0" value="0" oninput="calculateTotal()"></td></tr>`;
+  }else if(selectedTicket===3){
+    rows+=`<tr><td>Dewasa/ Adult (>=22)</td><td>Rp 130.000</td><td><input type="number" id="dewasa" min="0" value="0" oninput="calculateTotal()"></td></tr>
+           <tr><td>Pelajar/ Student (13-21)</td><td>Rp 65.000</td><td><input type="number" id="pelajar" min="0" value="0" oninput="calculateTotal()"></td></tr>
+           <tr><td>Anak/ Child (7-12)</td><td>Rp 25.000</td><td><input type="number" id="anak" min="0" value="0" oninput="calculateTotal()"></td></tr>`;
+  }
+  table.innerHTML=rows;
+}
+
+function calculateTotal(){
+  const dewasa=parseInt(document.getElementById('dewasa')?.value)||0;
+  const pelajar=parseInt(document.getElementById('pelajar')?.value)||0;
+  const anak=parseInt(document.getElementById('anak')?.value)||0;
+  let total=0;
+  if(selectedTicket===1){total=dewasa*40000+pelajar*20000;}
+  else if(selectedTicket===2){total=dewasa*100000+pelajar*50000+anak*25000;}
+  else if(selectedTicket===3){total=dewasa*130000+pelajar*65000+anak*25000;}
+  document.getElementById('total-price').innerText=new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR'}).format(total);
+}
+
+function selectMetode(metode) {
+  selectedMetode = metode;
+  document.querySelectorAll('.payment-option').forEach(el => {
+    el.classList.remove('selected');
+    if (el.textContent === metode) el.classList.add('selected');
+  });
+}
+
+function submitForm() {
+  const now = new Date();
+  const lastSubmit = localStorage.getItem("lastSubmitTime");
+
+  // Cek apakah sudah pernah submit dalam 3 menit terakhir
+  if (lastSubmit) {
+    const lastTime = new Date(parseInt(lastSubmit));
+    const diffMs = now - lastTime;
+    const diffMinutes = diffMs / 1000 / 60;
+
+    if (diffMinutes < 0) {
+      return alert("Anda sudah mengirim data. Silakan tunggu 3 menit lagi.\nYou have already submitted. Please wait 3 minutes again.");
+    }
+  }
+
+  const nama = document.getElementById('nama').value;
+  if (!nama) return alert("Nama harus diisi/Name is required.");
+  if (!selectedMetode) return alert("Pilih metode pembayaran\nPlease choose payment option.");
+
+  const dewasa = parseInt(document.getElementById('dewasa').value) || 0;
+  const pelajar = parseInt(document.getElementById('pelajar').value) || 0;
+  const anakEl = document.getElementById('anak');
+  const anak = parseInt(anakEl ? anakEl.value : 0) || 0;
+  
+  let total = 0; 
+
+  if (selectedTicket === 1) { // Exhibition: dewasa + pelajar 
+    total = dewasa + pelajar; 
+  } else if (selectedTicket === 2 || selectedTicket === 3) { // Regular & Bundled: dewasa + pelajar + anak 
+    total = dewasa + pelajar + anak; 
+  }
+
+  if (total <= 0) return alert("Pilih tiketnya/Please select your ticket(s).");
+
+  const tanggal = now.toISOString().split('T')[0];
+  const waktu = now.toTimeString().slice(0, 5);
+
+  const negara1 = document.querySelector('[name="negara1"]').value;
+  const jumlah1 = document.querySelector('[name="jumlah1"]').value;
+  const negara2 = document.querySelector('[name="negara2"]').value;
+  const jumlah2 = document.querySelector('[name="jumlah2"]').value;
+  
+  const formData = new URLSearchParams();
+ 
+  formData.append("tanggalDanJam", `${tanggal} ${waktu}`);
+  formData.append("nama", nama);
+
+  // Default semua kolom tiket = 0 
+  let Reg_G=0, Reg_S=0, Reg_C=0, Bnd_G=0, Bnd_S=0, Bnd_C=0, Exh_G=0, Exh_S=0;
+
+  if (selectedTicket === 1) { // Exhibition 
+    Exh_G = dewasa; Exh_S = pelajar; 
+  } else if (selectedTicket === 2) { // Regular 
+    Reg_G = dewasa; Reg_S = pelajar; Reg_C = anak; 
+  } else if (selectedTicket === 3) { // Bundled 
+    Bnd_G = dewasa; Bnd_S = pelajar; Bnd_C = anak; 
+  }
+
+  // Append ke formData
+  formData.append("Reg_G", Reg_G);
+  formData.append("Reg_S", Reg_S);
+  formData.append("Reg_C", Reg_C);
+  formData.append("Bnd_G", Bnd_G);
+  formData.append("Bnd_S", Bnd_S);
+  formData.append("Bnd_C", Bnd_C);
+  formData.append("Exh_G", Exh_G);
+  formData.append("Exh_S", Exh_S);  
+
+  formData.append("metode", selectedMetode);
+  formData.append("negara1", negara1);
+  formData.append("jumlah1", jumlah1);
+  formData.append("negara2", negara2);
+  formData.append("jumlah2", jumlah2);
+ 
+  // Disable tombol agar tidak bisa diklik lagi
+  const button = document.querySelector('.submit-btn');
+  button.disabled = true;
+  button.innerText = "Mengirim... / Submitting...";
+
+  fetch("https://script.google.com/macros/s/AKfycbyx4YXxGSOYQPBNzxrYXArPo8MGPlGP7zMtUNF6PsOPaVnDZTKjnampkvM2maiAOgMf/exec", {
+    method: "POST",
+    body: formData
+})
+  .then(response => response.text())
+  .then(result => {
+    console.log("Nomor antrian dari backend:", result); // ← Tambahan log
+    localStorage.setItem("lastSubmitTime", now.getTime()); // ← Tambahan penting
+    document.getElementById('step2').style.display = 'none';
+    document.getElementById('antrian-container').style.display = 'block';
+    document.getElementById('nomor-antrian').innerText = result.trim();
+  })
+  .catch(error => {
+    alert("Gagal kirim data ke Google Sheets: " + error);
+   button.disabled = false;
+    button.innerText = "Pesan Sekarang/Order Now";
+  });
+}
+
+</script>
+</body>
+</html>
+
+
+
+
+
