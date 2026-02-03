@@ -13,3 +13,7 @@ tempat data disimpan di g.sheet: 202601_TicketExh_03
 App Script: Script_202601TicketExh03
 metode bayar: QRIS dan Card
 Bila Cash, akan berwarna hijau
+
+Form_tiketExh04.html
+Form yang sudah ada bingkai dan logo
+dan diganti nama: Tiket Galeria Sophilia.html
