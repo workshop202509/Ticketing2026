@@ -193,7 +193,7 @@ window.onload = function() {
 
  if (day === 0) {
   // Minggu: 11.00 – 14.35
-   isWaktuValid = (jam > 11 || (jam === 11 && menit >= 0)) && (jam < 14 || (jam === 14 && menit <= 35));
+   isWaktuValid = (jam > 11 || (jam === 11 && menit >= 0)) && (jam < 14 || (jam === 16 && menit <= 35));
                   
  } else if (day === 6) {
   // Sabtu: 12.30 – 16.00
@@ -393,6 +393,7 @@ function submitForm() {
 </script>
 </body>
 </html>
+
 
 
 
