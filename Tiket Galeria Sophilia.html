@@ -203,8 +203,8 @@ window.onload = function() {
   // Senin: 07.00 – 23.00
   isWaktuValid = (jam > 7 || (jam === 7 && menit >= 0)) && (jam < 23 || (jam === 23 && menit === 0));
  
- } else if (day === 4) {
-  // Kamis: 07.00 – 23.00
+ } else if (day === 2) {
+  // Selasa: 07.00 – 23.00
   isWaktuValid = (jam > 7 || (jam === 7 && menit >= 0)) && (jam < 23 || (jam === 23 && menit === 0));
  }
 
@@ -302,8 +302,9 @@ function submitForm() {
     const diffMs = now - lastTime;
     const diffMinutes = diffMs / 1000 / 60;
 
-    if (diffMinutes < 0) {
-      return alert("Anda sudah mengirim data. Silakan tunggu 3 menit lagi.\nYou have already submitted. Please wait 3 minutes again.");
+    if (diffMinutes < 3) {
+      return alert("Anda sudah mendapatkan nomor antrian. Bila ingin diubah, ubah di loket saja.\nYou have already received 
+				   a queue number. If you would like to make changes, please do so at the counter.");
     }
   }
 
