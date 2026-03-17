@@ -19,5 +19,5 @@ Form yang sudah ada bingkai dan logo
 dan diganti nama: Tiket Galeria Sophilia.html
 
 05/02/2026: ganti font Galeria Sophilia: Futura Cyrillic Book
-17/03/2026: Aktifkan 3 menit untuk tidak pesan ulang. Ubah selasa dapat diakses. Ubah kata2 di 3 menit, ubah lagi jadi 0
+17/03/2026: Aktifkan 3 menit untuk tidak pesan ulang. Ubah selasa dapat diakses. Ubah kata2 di 3 menit.
 
