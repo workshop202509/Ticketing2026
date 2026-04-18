@@ -21,3 +21,5 @@ dan diganti nama: Tiket Galeria Sophilia.html
 05/02/2026: ganti font Galeria Sophilia: Futura Cyrillic Book
 17/03/2026: Aktifkan 3 menit untuk tidak pesan ulang. Ubah selasa dapat diakses. Ubah kata2 di 3 menit.
 
+30/03/2026: ganti program menjadi 9 jenit tiket (Scu, Tan, Reg), Bundling tan tiket sudah berakhir. DIganti namanya: Tiket Galeria Sophilia.html
+18/04/2026: ganti jam buka untuk pagi 09.00, untuk sesi pagi.
