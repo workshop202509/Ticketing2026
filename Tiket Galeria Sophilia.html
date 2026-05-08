@@ -137,7 +137,7 @@ function selectTicket(option) {
   <div id="step2" style="text-align:center; display:none;">
     <h2 style="margin-bottom:5px;">Pemesanan Tiket</h2> 
     <hr style="width:60%; margin:auto; border:1px solid #000;"> 
-    <h2 style="margin-top:5px;">Ticket Order</h2> 
+    <h2 style="margin-top:5px;">Ticket Booking</h2> 
 
   <div class="row">
     <div>
@@ -157,22 +157,22 @@ function selectTicket(option) {
     <table id="ticketTable">
       <tr><th>Tiket/ Tickets</th><th>Harga/ Price</th><th>Jumlah/ Amount</th></tr>
     </table>
-    <div class="total-price">Jumlah Pembayaran/Total Payment: <span id="total-price">Rp0</span></div>
+    <div class="total-price">Total Harga/Price: <span id="total-price">Rp0</span></div>
  
-  <h4>Metode Pembayaran/Payment Option</h4>
+  <h4>Metode Pembayaran/Payment Method</h4>
   <div class="payment-options">
     <div class="payment-option" onclick="selectMetode('QRIS')">QRIS</div>
     <div class="payment-option" onclick="selectMetode('Card')">Card</div>
   </div>
  
 
-  <h3>Asal Negara/Domicile Country</h3>
+  <h3>Kewarganegaraan/Nationality</h3>
   <div class="note">
     * untuk luar Indonesia<br>
     only for the foreigners
   </div>
   <table>
-    <tr><th>Asal Negara/ Country</th><th>Jumlah Orang/ Total People</th></tr>
+    <tr><th>Warga Negara/ Nationality</th><th>Jumlah Orang/ Total People</th></tr>
     <tr><td><input type="text" name="negara1" placeholder="e.g.: Malaysia"></td>
       	  <td><input type="number" name="jumlah1" min="0" value="0"></td></tr>
     <tr><td><input type="text" name="negara2" placeholder="e.g.: India"></td>
@@ -181,14 +181,14 @@ function selectTicket(option) {
 
     <div class="button-row">
       <button class="back-btn" onclick="goBack()">Kembali / Back</button>
-      <button class="submit-btn" onclick="submitForm()">Pesan Sekarang / Order Now</button>
+      <button class="submit-btn" onclick="submitForm()">Pesan Sekarang / Book Now</button>
     </div>
   </div>
 
   <!-- Step 3: Antrian (setelah submit) -->
   <div class="antrian-container" id="antrian-container" style="display:none;">
-    <h3 style="text-align:center;">Terima kasih atas pemesanan Anda!<br><em>Thanks for your order!</em></h3>
-    <p style="text-align:center;">Nomor antrian Anda adalah:<br><em>Your queue number:</em></p>
+    <h3 style="text-align:center;">Pemesanan berhasil!<br><em>Booking confirmed!</em></h3>
+    <p style="text-align:center;">Nomor antrian Anda:<br><em>Your queue number:</em></p>
     <div class="nomor-antrian" id="nomor-antrian"></div>
   </div>
 </div>
@@ -212,8 +212,8 @@ window.onload = function() {
    isWaktuValid = (jam > 9 || (jam === 9 && menit >= 0)) && (jam < 17 || (jam === 16 && menit <= 35));
                   
  } else if (day === 6) {
-  // Sabtu: 12.30 – 16.00
-   isWaktuValid = (jam > 12 || (jam === 12 && menit >= 30)) && (jam < 16 || (jam === 16 && menit === 0));
+  // Sabtu: 12.00 – 16.00
+   isWaktuValid = (jam > 12 || (jam === 12 && menit >= 0)) && (jam < 16 || (jam === 16 && menit === 0));
                   
  } else if (day === 1) {
   // Senin: 07.00 – 23.00
@@ -410,7 +410,7 @@ function submitForm() {
   .catch(error => {
     alert("Gagal kirim data ke Google Sheets: " + error);
    button.disabled = false;
-    button.innerText = "Pesan Sekarang/Order Now";
+    button.innerText = "Pesan Sekarang/Book Now";
   });
 }
 
