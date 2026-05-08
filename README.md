@@ -23,3 +23,5 @@ dan diganti nama: Tiket Galeria Sophilia.html
 
 30/03/2026: ganti program menjadi 9 jenit tiket (Scu, Tan, Reg), Bundling tan tiket sudah berakhir. DIganti namanya: Tiket Galeria Sophilia.html
 18/04/2026: ganti jam buka untuk pagi 09.00, untuk sesi pagi.
+
+08/05/2026: baris 230 formulir uul dihapus. Order --> Book, Ticket Order --> Ticket Booking, JUmlah pembayaran/total payment --> Total Harga/Price, Asal Negara --> Warga negara, Domicile Country --> Nationality. Terimakasih atas pemesanan tiket! --> Pemesanan berhasil! Booking confirmed
