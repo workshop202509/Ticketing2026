@@ -333,7 +333,7 @@ function submitForm() {
     const diffMs = now - lastTime;
     const diffMinutes = diffMs / 1000 / 60;
 
-    if (diffMinutes < 4) {
+    if (diffMinutes < 10) {
       return alert("Nomor antrian telah diterima. Perubahan dapat dilakukan di loket.\nQueue number issued. Changes only at the counter.");
     }
   }
