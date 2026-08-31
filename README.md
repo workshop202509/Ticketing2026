@@ -27,3 +27,6 @@ dan diganti nama: Tiket Galeria Sophilia.html
 08/05/2026: baris 230 formulir uul dihapus. Order --> Book, Ticket Order --> Ticket Booking, JUmlah pembayaran/total payment --> Total Harga/Price, Asal Negara --> Warga negara, Domicile Country --> Nationality. Terimakasih atas pemesanan tiket! --> Pemesanan berhasil! Booking confirmed
 
 28/06/2026: Difference > 4, diubah menjadi Difference > 10 menit. Karena banyak yang isi ulangnya berkali2.
+
+31/08/2026: Menambahkan info: penitipan barang ke locker, di halaman nomor antrian
+
