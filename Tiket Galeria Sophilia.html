@@ -190,6 +190,8 @@ function selectTicket(option) {
     <h3 style="text-align:center;">Pemesanan berhasil!<br><em>Booking confirmed!</em></h3>
     <p style="text-align:center;">Nomor antrian Anda:<br><em>Your queue number:</em></p>
     <div class="nomor-antrian" id="nomor-antrian"></div>
+    <p style="text-align:center;">Setelah mendapatkan tiket, silakan titipkan tas, botol minum, dan kamera di bagian loker.<br>
+		<em>Once you have your ticket, kindly store your bags, drink bottles, and cameras in the locker area.</em></p>
   </div>
 </div>
 
@@ -285,7 +287,7 @@ function renderTable(){
            <tr><td>Pelajar/ Student (13-21)</td><td>Rp 20.000</td><td><input type="number" id="Tan_S" min="0" value="0" oninput="calculateTotal()"></td></tr>
            <tr><td>Anak/ Child (7-12)</td><td>Rp 10.000</td><td><input type="number" id="Tan_C" min="0" value="0" oninput="calculateTotal()"></td></tr>`;
 
-  // Table 3: Lantai 6–7 - Budaya Eropa & Timur (Regular)
+  // Table 3: Lantai 6–7 - Budaya Eropa & Asia Timur (Regular)
   rows += `<tr><th colspan="3" style="color: saddlebrown;">Lantai 6–7/6–7<sup>th</sup> Floor</th></tr>
            <tr><th>Tiket/ Tickets</th><th>Harga/ Price</th><th>Jumlah/ Amount</th></tr>
            <tr><td>Dewasa/ Adult (≥22)</td><td>Rp 100.000</td><td><input type="number" id="Reg_G" min="0" value="0" oninput="calculateTotal()"></td></tr>
