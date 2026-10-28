@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html /* 9 tiket: Reg, Sclupture, Tang, no bundling */>
+<html /* 6 tiket: Reg, Sclupture, no bundling */>
 <head>
   <title>Formulir Pemesanan Tiket</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -104,8 +104,8 @@ function selectTicket(option) {
     <div style="border:1px solid #ccc; padding:16px; border-radius:8px; background-color:#f9f9f9; max-width:500px; margin:0 auto; text-align:center;">
       <p>
     	<strong>Lantai 1</strong><br>Karya Seni Patung Barat<br><br>
- 	<strong>Lantai 5</strong><br>Keramik Tiga Warna Dinasti Tang, Peninggalan Budaya Jalur Sutra<br><br>
-	<strong>Lantai 6–7</strong><br>Karya Seni Rupa Barat dan Barang Bersejarah Asia Timur
+   <!--	<strong>Lantai 5</strong><br>Keramik Tiga Warna Dinasti Tang, Peninggalan Budaya Jalur Sutra<br><br> -->
+		<strong>Lantai 6–7</strong><br>Karya Seni Rupa Barat dan Barang Bersejarah Asia Timur
       </p>
     </div>
       <p>Silakan pilih tiket Anda<br>boleh satu, dua, atau semua sekaligus<br> dan rasakan perjalanan budaya yang berharga.<br><br>
@@ -118,7 +118,7 @@ function selectTicket(option) {
     <div style="border:1px solid #ccc; padding:16px; border-radius:8px; background-color:#f9f9f9; max-width:500px;margin:0 auto; text-align:center;">
       <p>
        <strong><em>1<sup>st</sup> floor</strong><br>Western Sculpture Art<br><br></em>
-       <strong><em>5<sup>th</sup> floor</strong><br>Tang Tri‑Color Ceramics, the Silk Road Cultural Relics<br><br></em>
+   <!-- <strong><em>5<sup>th</sup> floor</strong><br>Tang Tri‑Color Ceramics, the Silk Road Cultural Relics<br><br></em>  -->
        <strong><em>6–7<sup>th</sup> floor</strong><br>Western Fine Arts and East Asian Historical Artifacts
       </p>
     </div>
@@ -150,9 +150,15 @@ function selectTicket(option) {
     </div>
   </div>
 
+   <div>
     <label for="nama">Nama/Name</label>
     <input type="text" id="nama" required>
-
+   </div>
+   <div>
+    <label for="phone">No. HP / Mobile No.</label>
+    <input type="tel" id="phone" maxlength="15" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+   </div>
+	  
     <h3>Tiket/Ticket</h3>
     <table id="ticketTable">
       <tr><th>Tiket/ Tickets</th><th>Harga/ Price</th><th>Jumlah/ Amount</th></tr>
@@ -221,7 +227,7 @@ window.onload = function() {
   // Senin: 07.00 – 23.00
   isWaktuValid = (jam > 7 || (jam === 7 && menit >= 0)) && (jam < 23 || (jam === 23 && menit === 0));
  
- } else if (day === 5) {
+ } else if (day === 3) {
   // Jumat: 07.00 – 23.00
   isWaktuValid = (jam > 7 || (jam === 7 && menit >= 0)) && (jam < 23 || (jam === 23 && menit === 00));
  }
@@ -279,14 +285,14 @@ function renderTable(){
            <tr><td>Dewasa/ Adult (≥22)</td><td>Rp 60.000</td><td><input type="number" id="Scu_G" min="0" value="0" oninput="calculateTotal()"></td></tr>
            <tr><td>Pelajar/ Student (13-21)</td><td>Rp 40.000</td><td><input type="number" id="Scu_S" min="0" value="0" oninput="calculateTotal()"></td></tr>
            <tr><td>Anak/ Child (7-12)</td><td>Rp 20.000</td><td><input type="number" id="Scu_C" min="0" value="0" oninput="calculateTotal()"></td></tr>`;
-
+/*
   // Table 2: Lantai 5 – Tang San Cai
   rows += `<tr><th colspan="3" style="color: saddlebrown;">Lantai 5/5<sup>th</sup> Floor</th></tr>
            <tr><th>Tiket/ Tickets</th><th>Harga/ Price</th><th>Jumlah/ Amount</th></tr>
            <tr><td>Dewasa/ Adult (≥22)</td><td>Rp 40.000</td><td><input type="number" id="Tan_G" min="0" value="0" oninput="calculateTotal()"></td></tr>
            <tr><td>Pelajar/ Student (13-21)</td><td>Rp 20.000</td><td><input type="number" id="Tan_S" min="0" value="0" oninput="calculateTotal()"></td></tr>
            <tr><td>Anak/ Child (7-12)</td><td>Rp 10.000</td><td><input type="number" id="Tan_C" min="0" value="0" oninput="calculateTotal()"></td></tr>`;
-
+*/
   // Table 3: Lantai 6–7 - Budaya Eropa & Asia Timur (Regular)
   rows += `<tr><th colspan="3" style="color: saddlebrown;">Lantai 6–7/6–7<sup>th</sup> Floor</th></tr>
            <tr><th>Tiket/ Tickets</th><th>Harga/ Price</th><th>Jumlah/ Amount</th></tr>
@@ -302,18 +308,20 @@ function calculateTotal(){
   const Scu_G = parseInt(document.getElementById('Scu_G')?.value) || 0;
   const Scu_S = parseInt(document.getElementById('Scu_S')?.value) || 0;
   const Scu_C = parseInt(document.getElementById('Scu_C')?.value) || 0;
-
+/*
   const Tan_G = parseInt(document.getElementById('Tan_G')?.value) || 0;
   const Tan_S = parseInt(document.getElementById('Tan_S')?.value) || 0;
   const Tan_C = parseInt(document.getElementById('Tan_C')?.value) || 0;
-
+*/
   const Reg_G = parseInt(document.getElementById('Reg_G')?.value) || 0;
   const Reg_S = parseInt(document.getElementById('Reg_S')?.value) || 0;
   const Reg_C = parseInt(document.getElementById('Reg_C')?.value) || 0;
 
-  let total = (Scu_G * 60000 + Scu_S * 40000 + Scu_C * 20000) +
-              (Tan_G * 40000 + Tan_S * 20000 + Tan_C * 10000) +
-              (Reg_G * 100000 + Reg_S * 50000 + Reg_C * 25000);
+// Tang sementara dinonaktifkan
+//            (Tan_G * 40000 + Tan_S * 20000 + Tan_C * 10000) +
+
+	let total = (Scu_G * 60000 + Scu_S * 40000 + Scu_C * 20000) +
+                (Reg_G * 100000 + Reg_S * 50000 + Reg_C * 25000);
   document.getElementById('total-price').innerText=new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(total);
 }
 
@@ -335,30 +343,35 @@ function submitForm() {
     const diffMs = now - lastTime;
     const diffMinutes = diffMs / 1000 / 60;
 
-    if (diffMinutes < 10) {
+    if (diffMinutes < 5) {
       return alert("Nomor antrian telah diterima. Perubahan dapat dilakukan di loket.\nQueue number issued. Changes only at the counter.");
     }
   }
 
   const nama = document.getElementById('nama').value;
+  const phone = document.getElementById('phone').value;
+	
   if (!nama) return alert("Nama harus diisi/Name is required.");
+  if (!phone) return alert("No. HP harus diisi/Mobile number is required.");
   if (!selectedMetode) return alert("Pilih metode pembayaran\nPlease choose payment option.");
 
   const Scu_G = parseInt(document.getElementById('Scu_G')?.value) || 0;
   const Scu_S = parseInt(document.getElementById('Scu_S')?.value) || 0;
   const Scu_C = parseInt(document.getElementById('Scu_C')?.value) || 0;
-
+/*
   const Tan_G = parseInt(document.getElementById('Tan_G')?.value) || 0;
   const Tan_S = parseInt(document.getElementById('Tan_S')?.value) || 0;
   const Tan_C = parseInt(document.getElementById('Tan_C')?.value) || 0;
-
+*/
   const Reg_G = parseInt(document.getElementById('Reg_G')?.value) || 0;
   const Reg_S = parseInt(document.getElementById('Reg_S')?.value) || 0;
   const Reg_C = parseInt(document.getElementById('Reg_C')?.value) || 0;
 
+// Tang sementara dinonaktifkan
+//			(Tan_G * 40000 + Tan_S * 20000 + Tan_C * 10000) +
+	
   let total = (Scu_G * 60000 + Scu_S * 40000 + Scu_C * 20000) +
-            (Tan_G * 40000 + Tan_S * 20000 + Tan_C * 10000) +
-            (Reg_G * 100000 + Reg_S * 50000 + Reg_C * 25000);
+              (Reg_G * 100000 + Reg_S * 50000 + Reg_C * 25000);
 
   if (total <= 0) return alert("Pilih tiketnya/Please select your ticket(s).");
 
@@ -379,9 +392,11 @@ function submitForm() {
   formData.append("Scu_G", Scu_G);
   formData.append("Scu_S", Scu_S);
   formData.append("Scu_C", Scu_C);
+/*
   formData.append("Tan_G", Tan_G);
   formData.append("Tan_S", Tan_S);
   formData.append("Tan_C", Tan_C);
+*/
   formData.append("Reg_G", Reg_G);
   formData.append("Reg_S", Reg_S);
   formData.append("Reg_C", Reg_C);
@@ -403,7 +418,22 @@ function submitForm() {
 })
   .then(response => response.text())
   .then(result => {
-    console.log("Nomor antrian dari backend:", result); // ← Tambahan log
+    // 1. simpan nomor antrian
+	console.log("Nomor antrian dari backend:", result); // ← Tambahan log
+
+    // 2. kirim ke Spreadsheet Locker
+    const lockerData = new URLSearchParams();
+
+    lockerData.append("nomorAntrian", result.trim());
+    lockerData.append("nama", nama);
+    lockerData.append("phone", phone);
+
+  fetch("https://script.google.com/macros/s/AKfycbyB--U3eJF5RinlrPKfrsInfn_jpVWovR80BiUCcVvanU-g1S9drnVOrciw6tRa2AZG/exec", {
+    	method: "POST",
+    	body: lockerData
+    })
+	  
+    // 3. tampilkan nomor antrian
     localStorage.setItem("lastSubmitTime", now.getTime()); // ← Tambahan penting
     document.getElementById('step2').style.display = 'none';
     document.getElementById('antrian-container').style.display = 'block';
