@@ -353,6 +353,8 @@ function submitForm() {
 	
   if (!nama) return alert("Nama harus diisi/Name is required.");
   if (!phone) return alert("No. HP harus diisi/Mobile number is required.");
+  if (phone.length < 10 || phone.length > 15){
+    return alert("No. HP harus 10–15 digit.\nMobile number must be 10–15 digits.");}	
   if (!selectedMetode) return alert("Pilih metode pembayaran\nPlease choose payment option.");
 
   const Scu_G = parseInt(document.getElementById('Scu_G')?.value) || 0;
