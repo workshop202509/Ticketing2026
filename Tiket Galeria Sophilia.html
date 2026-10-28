@@ -63,7 +63,7 @@
 
     .note {font-style: italic;font-size: 0.9em;color: #666;margin-top: 5px;}
 
-    #nama, #phone {width: 100%; box-sizing: border-box; border: 2px solid #8b5e3c; padding: 10px; border-radius: 6px; font-size: 1em; }   
+    #nama {border: 2px solid #8b5e3c; padding: 10px; border-radius: 6px; font-size: 1em; }    
 
     .antrian-container {text-align: center;padding: 30px;border: none;background-color: transparent;
       display: none;margin-top: 5px;}
@@ -150,16 +150,9 @@ function selectTicket(option) {
     </div>
   </div>
 
-   <div>
     <label for="nama">Nama/Name</label>
     <input type="text" id="nama" required>
-   </div>
-<!--
-   <div>
-    <label for="phone">No. HP / Mobile No.</label>
-    <input type="tel" id="phone" minlength="10" maxlength="15" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
-   </div>
--->	  
+	  
     <h3>Tiket/Ticket</h3>
     <table id="ticketTable">
       <tr><th>Tiket/ Tickets</th><th>Harga/ Price</th><th>Jumlah/ Amount</th></tr>
@@ -421,7 +414,6 @@ function submitForm() {
     method: "POST",
     body: formData
 })
-https://script.google.com/macros/s/AKfycbz_PuY8g8ym3tE-r0UhpKv5mXfiKzbDx-vj88C4JbGjZ44jBI7EsIJAtxAcKPitPIVB/exec
 	  
 	  .then(response => response.text())
   .then(result => {
