@@ -349,12 +349,14 @@ function submitForm() {
   }
 
   const nama = document.getElementById('nama').value;
-  const phone = document.getElementById('phone').value;
+//  const phone = document.getElementById('phone').value;
 	
   if (!nama) return alert("Nama harus diisi/Name is required.");
+/*
   if (!phone) return alert("No. HP harus diisi/Mobile number is required.");
   if (phone.length < 10 || phone.length > 15){
     return alert("No. HP harus 10–15 digit.\nMobile number must be 10–15 digits.");}	
+*/
   if (!selectedMetode) return alert("Pilih metode pembayaran\nPlease choose payment option.");
 
   const Scu_G = parseInt(document.getElementById('Scu_G')?.value) || 0;
@@ -428,7 +430,7 @@ function submitForm() {
 
     lockerData.append("nomorAntrian", result.trim());
     lockerData.append("nama", nama);
-    lockerData.append("phone", phone);
+//    lockerData.append("phone", phone);
 
   fetch("https://script.google.com/macros/s/AKfycbyB--U3eJF5RinlrPKfrsInfn_jpVWovR80BiUCcVvanU-g1S9drnVOrciw6tRa2AZG/exec", {
     	method: "POST",
@@ -451,15 +453,3 @@ function submitForm() {
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
