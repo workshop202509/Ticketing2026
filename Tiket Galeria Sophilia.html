@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html /* 6 tiket: Reg, Sclupture, no bundling */>
+<html /* 6 tiket: Reg, Sclupture */>
 <head>
   <title>Formulir Pemesanan Tiket</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -63,7 +63,7 @@
 
     .note {font-style: italic;font-size: 0.9em;color: #666;margin-top: 5px;}
 
-    #nama {border: 2px solid #8b5e3c; padding: 10px; border-radius: 6px; font-size: 1em; }   
+    #nama, #phone {width: 100%; box-sizing: border-box; border: 2px solid #8b5e3c; padding: 10px; border-radius: 6px; font-size: 1em; }   
 
     .antrian-container {text-align: center;padding: 30px;border: none;background-color: transparent;
       display: none;margin-top: 5px;}
@@ -156,7 +156,7 @@ function selectTicket(option) {
    </div>
    <div>
     <label for="phone">No. HP / Mobile No.</label>
-    <input type="tel" id="phone" maxlength="15" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+    <input type="tel" id="phone" minlength="10" maxlength="15" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
    </div>
 	  
     <h3>Tiket/Ticket</h3>
