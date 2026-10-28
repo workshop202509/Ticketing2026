@@ -417,11 +417,12 @@ function submitForm() {
   button.disabled = true;
   button.innerText = "Mengirim... / Submitting...";
 
-  fetch("https://script.google.com/macros/s/AKfycbxvuKEguxK4SorvaZ4WrK-EpIvnWIwobsj2wFwLU8s8KfcORmL3m3PDa5qQexbDHA4/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbz_PuY8g8ym3tE-r0UhpKv5mXfiKzbDx-vj88C4JbGjZ44jBI7EsIJAtxAcKPitPIVB/exec", {
     method: "POST",
     body: formData
 })
-  .then(response => response.text())
+
+	  .then(response => response.text())
   .then(result => {
     // 1. simpan nomor antrian
 	console.log("Nomor antrian dari backend:", result); // ← Tambahan log
