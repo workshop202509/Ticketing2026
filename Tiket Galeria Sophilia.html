@@ -421,7 +421,7 @@ function submitForm() {
 	console.log("Nomor antrian dari backend:", result); // ← Tambahan log
 
     // 2. kirim ke Spreadsheet Locker
-    const lockerData = new URLSearchParams();
+/*    const lockerData = new URLSearchParams();
 
     lockerData.append("nomorAntrian", result.trim());
     lockerData.append("nama", nama);
@@ -431,7 +431,7 @@ function submitForm() {
     	method: "POST",
     	body: lockerData
     })
-	  
+*/	  
     // 3. tampilkan nomor antrian
     localStorage.setItem("lastSubmitTime", now.getTime()); // ← Tambahan penting
     document.getElementById('step2').style.display = 'none';
